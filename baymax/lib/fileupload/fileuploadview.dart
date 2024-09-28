@@ -45,7 +45,36 @@ class Fileuploadview extends StatelessWidget {
                   SizedBox(
                     height: _height * 0.05,
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text("Upload"))
+                  TextField(
+                    controller: fpl.url,
+                    decoration: InputDecoration(
+                      filled: true,
+                      //prefixIcon: const Icon(Icons.upload_file_outlined),
+                      fillColor: const Color.fromARGB(255, 238, 255, 253),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(0),
+                          borderSide: const BorderSide(width: 0.1)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(0),
+                          borderSide: const BorderSide(width: 0.5)),
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      hintText: "Url",
+                    ),
+                  ),
+                  SizedBox(
+                    height: _height * 0.05,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      fpl.setVal();
+                      await fpl.postUrl("name");
+                    },
+                    child: const Text(
+                      "Upload",
+                    ),
+                  )
                 ],
               ),
             )

@@ -82,8 +82,9 @@ class HomeScreen extends StatelessWidget {
                       padding: EdgeInsets.only(right: _width * 0.04843318),
                       child: Container(
                         child: IconButton(
-                            onPressed: () {
-                              lgn.box.remove("token");
+                            onPressed: () async {
+                              await lgn.box.remove("token");
+                              debugPrint("Token Removed");
                               Get.offAllNamed("/login");
                             },
                             icon: Icon(Icons.logout_rounded)),

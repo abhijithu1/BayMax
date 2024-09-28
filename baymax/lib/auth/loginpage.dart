@@ -1,4 +1,5 @@
 import 'package:baymax/auth/logincontroller.dart';
+import 'package:baymax/home/recordsretrieval.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -11,6 +12,7 @@ class LoginPage extends StatelessWidget {
     final LoginController lgn = Get.find<LoginController>();
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.height;
+    final Recordsretrieval rrc = Recordsretrieval();
 
     return Scaffold(
       body: SafeArea(
@@ -81,6 +83,7 @@ class LoginPage extends StatelessWidget {
                         await lgn.getKey(lgn.usname.string);
                         final token = await lgn.box.read("token");
                         if (token != null) {
+                          await rrc.getFiles();
                           Get.toNamed("/home");
                         }
                       },

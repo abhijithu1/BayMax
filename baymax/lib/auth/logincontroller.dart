@@ -1,3 +1,4 @@
+import 'package:baymax/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -17,11 +18,11 @@ class LoginController extends GetxController {
     pass.value = passwordController.text;
   }
 
-  final _baseurl = "http://172.20.34.226:8000/";
+  final _baseurl = Constants.baseurl;
 
   Future<dynamic> getKey(String name) async {
-    Response res = await getcon.post("${_baseurl}auth/login/",
-        {"username": "David", "password": "nandu123"});
+    final Response res = await getcon.post("${_baseurl}auth/login/",
+        {"username": "snapeos", "password": "nandu123"});
 
     if (res.statusCode == 200) {
       debugPrint(res.body.toString());
