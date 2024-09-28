@@ -83,7 +83,6 @@ class LoginPage extends StatelessWidget {
                         await lgn.getKey(lgn.usname.string);
                         final token = await lgn.box.read("token");
                         if (token != null) {
-                          await rrc.getFiles();
                           Get.toNamed("/home");
                         }
                       },

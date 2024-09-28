@@ -1,3 +1,4 @@
+import 'package:baymax/detailsview/detailedview.dart';
 import 'package:baymax/fileupload/fileuploadview.dart';
 import 'package:baymax/home/recordsretrieval.dart';
 import 'package:baymax/recordview/recordview.dart';
@@ -28,27 +29,32 @@ class BodyRecord extends StatelessWidget {
         ),
         SizedBox(
             height: height * 0.7,
-            child: Obx(
-              () {
-                if (rrc.isloading.value) {
-                  return const Center(
-                      child:
-                          CircularProgressIndicator()); // Show loading indicator
-                } else if (rrc.nameList.isEmpty) {
-                  return Center(child: Text("No files to show"));
-                } else {
-                  return Obx(() => ListView.builder(
-                        itemCount: rrc.nameList.value.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(rrc.nameList.value[index]),
-                            onTap: () {},
+            child: FutureBuilder(
+                future: rrc.getFiles(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(snapshot.data[index]["name"].toString()),
+                        onTap: () {
+                          final data = snapshot.data[index];
+                          Get.to(
+                            DetailFileView(
+                              name: data["name"].toString(),
+                              url: data["url"].toString(),
+                              date: data["date"].toString(),
+                              summary: data["summary"].toString(),
+                            ),
                           );
                         },
-                      ));
-                }
-              },
-            ))
+                      );
+                    },
+                  );
+                }))
       ]),
     );
   }

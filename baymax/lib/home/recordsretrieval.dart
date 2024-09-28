@@ -46,6 +46,7 @@ class Recordsretrieval extends GetxController {
       debugPrint("Summary List: $summaryList");
       debugPrint("Url List: $urlList");
       isloading.value = false;
+      return res.body;
     } else {
       debugPrint("Can't Send Url");
     }

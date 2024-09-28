@@ -1,7 +1,6 @@
 import 'package:baymax/auth/logincontroller.dart';
 import 'package:baymax/home/bodychat.dart';
 import 'package:baymax/home/bodyrecord.dart';
-import 'package:baymax/home/bodyrelations.dart';
 import 'package:baymax/home/homecontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -124,8 +123,10 @@ class HomeScreen extends StatelessWidget {
                             height: _height,
                             width: _width,
                           ),
-                          BodyChat(),
-                          RelationBody(),
+                          BodyChat(
+                            height: _height,
+                            width: _width,
+                          ),
                         ],
                       ),
                     ),
