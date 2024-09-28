@@ -41,10 +41,6 @@ class HomeScreen extends StatelessWidget {
               label: "",
               icon: Icon(Icons.chat_bubble_outline),
             ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(Icons.family_restroom),
-            )
           ],
         ),
       ),
