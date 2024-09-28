@@ -1,6 +1,7 @@
 import 'package:baymax/auth/logincontroller.dart';
 import 'package:baymax/auth/loginpage.dart';
 import 'package:baymax/fileupload/fileuploadcontroller.dart';
+import 'package:baymax/home/chatcontroller.dart';
 import 'package:baymax/home/homecontroller.dart';
 import 'package:baymax/home/homescreen.dart';
 import 'package:baymax/home/recordsretrieval.dart';
@@ -24,6 +25,7 @@ class ScreenHome extends StatelessWidget {
   final HomeController hmc = Get.put(HomeController());
   final FileUploadController fpl = Get.put(FileUploadController());
   final Recordsretrieval rrc = Get.put(Recordsretrieval());
+  final ChatController cht = Get.put(ChatController());
 
   @override
   Widget build(BuildContext context) {
