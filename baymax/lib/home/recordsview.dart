@@ -20,7 +20,9 @@ class GetFileDetails extends StatelessWidget {
             },
             child: Text("Enter Date: ")),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () async {
+            await rpt.getReport();
+          },
           child: Text("Generate Report"),
         ),
         SizedBox(

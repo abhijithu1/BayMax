@@ -20,7 +20,7 @@ class LoginController extends GetxController {
 
   final _baseurl = Constants.baseurl;
 
-  Future<dynamic> getKey(String name) async {
+  Future<dynamic> getKey() async {
     final Response res = await getcon.post("${_baseurl}auth/login/",
         {"username": "snapeos", "password": "nandu123"});
 

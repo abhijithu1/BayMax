@@ -34,5 +34,11 @@ class ReportDateController extends GetxController {
       {"date": "${selectedDate.value}"},
       headers: {"Authorization": "token $key"},
     );
+    if (res.statusCode == 200) {
+      debugPrint("${res.body}");
+      return res.body;
+    } else {
+      return Get.snackbar("Error", "Some error occurred");
+    }
   }
 }

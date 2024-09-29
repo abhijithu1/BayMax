@@ -1,5 +1,6 @@
 import 'package:baymax/home/chatcontroller.dart';
 import 'package:baymax/home/datecontrol.dart';
+import 'package:baymax/speechcontrol/speechcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ class BodyChat extends StatelessWidget {
   Widget build(BuildContext context) {
     final ChatController cht = Get.find<ChatController>();
     final DateController dt = Get.put(DateController());
+    final SpeechController spc = Get.put(SpeechController());
 
     return Scaffold(
       appBar: AppBar(
@@ -120,6 +122,14 @@ class BodyChat extends StatelessWidget {
                   icon: const Icon(Icons.send),
                   color: Theme.of(context).primaryColor,
                 ),
+                IconButton(
+                  onPressed: () {},
+                  icon: spc.isListening == true
+                      ? Icon(
+                          Icons.mic_off,
+                        )
+                      : Icon(Icons.mic),
+                )
               ],
             ),
           ),

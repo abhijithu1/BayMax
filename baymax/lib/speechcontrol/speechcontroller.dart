@@ -16,10 +16,10 @@ class SpeechController extends GetxController {
         onError: (error) => print('Speech Error: $error'),
       );
       if (available) {
-        print('Speech-to-Text initialized successfully');
+        Get.snackbar('Speech-to-Text', 'Initialized successfully');
       }
     } else {
-      print('Microphone permission denied');
+      Get.snackbar("Microphone permission", " denied");
     }
   }
 
