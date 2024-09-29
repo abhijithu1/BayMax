@@ -1,4 +1,5 @@
 import 'package:baymax/home/chatcontroller.dart';
+import 'package:baymax/home/datecontrol.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,10 +12,35 @@ class BodyChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ChatController cht = Get.find<ChatController>();
+    final DateController dt = Get.put(DateController());
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chat"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              cht.chatMessages.clear();
+              cht.date = '';
+            },
+            icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: Icon(Icons.cleaning_services, color: Colors.red)),
+          ),
+          IconButton(
+            icon: SizedBox(
+              height: 20,
+              width: 20,
+              child: Icon(
+                Icons.date_range_outlined,
+                color: Colors.red,
+              ),
+            ),
+            onPressed: () async {
+              await dt.selectDate(context);
+            },
+          )
+        ],
         centerTitle: true,
       ),
       body: Column(

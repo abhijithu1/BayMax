@@ -12,6 +12,7 @@ class ChatController extends GetxController {
   // RxList to store chat messages and notify the UI when new messages are added.
   final RxList<Map<String, bool>> chatMessages = <Map<String, bool>>[].obs;
   final isLoading = false.obs;
+  var date = '';
 
   Future<void> sendMessage() async {
     // Retrieve the stored token
@@ -30,7 +31,7 @@ class ChatController extends GetxController {
     // Make the API call to send the message
     final Response res = await getConnect.post(
       "$baseUrl/aichat/",
-      {"date": "", "msg": message},
+      {"date": "$date", "msg": message},
       headers: {"Authorization": "token $token"},
     );
 
