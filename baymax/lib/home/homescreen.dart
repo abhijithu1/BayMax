@@ -18,6 +18,68 @@ class HomeScreen extends StatelessWidget {
     final HomeController hmc = Get.find<HomeController>();
     final PageController pg = PageController();
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(
+                  255, 224, 6, 6), // BayMax theme red color for header
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 40.0,
+                  backgroundImage: const NetworkImage(
+                    "https://img.freepik.com/free-photo/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_273609-1270.jpg",
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                Text(
+                  'Username', // Replace with dynamic username if needed
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'useremail@example.com', // Replace with dynamic email if needed
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
+            onTap: () {
+              Get.toNamed("/home"); // Navigate to home
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              // Handle settings navigation
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () async {
+              await lgn.box.remove("token");
+              debugPrint("Token Removed");
+              Get.offAllNamed("/login");
+            },
+          ),
+        ],
+      )),
       bottomNavigationBar: SizedBox(
         height: height * 0.084518,
         child: BottomNavigationBar(
@@ -55,14 +117,17 @@ class HomeScreen extends StatelessWidget {
           // width: _screenwidth,
           child: Padding(
             padding: EdgeInsets.only(
-              top: height * 0.0100227,
+              top: height * 0,
               bottom: 0,
             ),
             child: CustomScrollView(
               slivers: [
                 SliverAppBar(
+                  backgroundColor: const Color.fromARGB(255, 253, 247,
+                      247), // Light background color (BayMax theme)
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(
+                        15), // Soft rounded corners for aesthetics
                   ),
                   actions: [
                     Padding(
@@ -70,9 +135,14 @@ class HomeScreen extends StatelessWidget {
                       child: SizedBox(
                         height: height * 0.07399,
                         width: width * 0.17193,
-                        child: const CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            "https://img.freepik.com/free-photo/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_273609-1270.jpg",
+                        child: CircleAvatar(
+                          backgroundColor: const Color.fromARGB(
+                              255, 224, 6, 6), // BayMax red border
+                          child: CircleAvatar(
+                            radius: width * 0.07193,
+                            backgroundImage: const NetworkImage(
+                              "https://img.freepik.com/free-photo/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_273609-1270.jpg",
+                            ),
                           ),
                         ),
                       ),
@@ -80,15 +150,33 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: width * 0.04843318),
                       child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color.fromARGB(255, 224, 6,
+                              6), // BayMax red background for logout button
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(
+                                  0.5), // Subtle shadow for button elevation
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3), // Shadow position
+                            ),
+                          ],
+                        ),
                         child: IconButton(
-                            onPressed: () async {
-                              await lgn.box.remove("token");
-                              debugPrint("Token Removed");
-                              Get.offAllNamed("/login");
-                            },
-                            icon: const Icon(Icons.logout_rounded)),
+                          onPressed: () async {
+                            await lgn.box.remove("token");
+                            debugPrint("Token Removed");
+                            Get.offAllNamed("/login");
+                          },
+                          icon: const Icon(Icons.logout_rounded,
+                              color: Colors.white), // White logout icon
+                          splashRadius: 28.0, // Smooth splash effect on tap
+                          tooltip: "Logout", // Tooltip for accessibility
+                        ),
                       ),
-                    )
+                    ),
                   ],
                   toolbarHeight: height * 0.0900227,
                   floating: true,
@@ -100,9 +188,13 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: Obx(() => Text(
                           hmc.titles[hmc.page_num.value],
-                          // style: StyleText.font2.copyWith(
-                          //   fontSize: _screenheight * 0.0340543,
-                          // ),
+                          style: TextStyle(
+                            color: const Color.fromARGB(
+                                255, 224, 6, 6), // BayMax red theme for text
+                            fontWeight: FontWeight.bold, // Bold for emphasis
+                            fontSize: height *
+                                0.0340543, // Adjusted font size for better readability
+                          ),
                         )),
                   ),
                   automaticallyImplyLeading: false,
