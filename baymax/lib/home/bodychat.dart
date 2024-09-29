@@ -10,34 +10,91 @@ class BodyChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ChatController cht = ChatController();
-    return Container(
-      child: Column(
+    final ChatController cht = Get.find<ChatController>();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Chat"),
+        centerTitle: true,
+      ),
+      body: Column(
         children: [
-          SizedBox(
-            height: height * 0.7,
-            child: Text("waiting for messages"),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () async {
-                  await cht.sendMessage();
+          // Chat Messages List
+          Expanded(
+            child: Obx(
+              () => ListView.builder(
+                itemCount: cht.chatMessages.length,
+                itemBuilder: (context, index) {
+                  final message = cht.chatMessages[index];
+                  final isUserMessage = message.values.first;
+
+                  return Align(
+                    alignment: isUserMessage
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: isUserMessage
+                            ? Colors.blueAccent
+                            : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        message.keys.first.toString(),
+                        style: TextStyle(
+                          color: isUserMessage ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
+                  );
                 },
-                icon: const Icon(Icons.send),
               ),
-              hintText: "Type a message",
-              filled: true,
-              fillColor: const Color.fromARGB(255, 238, 255, 253),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
-                  borderSide: const BorderSide(width: 0.1)),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(0),
-                  borderSide: const BorderSide(width: 0.5)),
-              disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(0),
-              ),
+            ),
+          ),
+
+          // Loading Indicator
+          Obx(() => cht.isLoading.value
+              ? const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(),
+                )
+              : const SizedBox()),
+
+          // Message Input Field
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: Row(
+              children: [
+                // Message Text Field
+                Expanded(
+                  child: TextField(
+                    controller: cht.messageController,
+                    decoration: InputDecoration(
+                      hintText: "Type a message",
+                      filled: true,
+                      fillColor: const Color.fromARGB(255, 238, 255, 253),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                ),
+
+                // Send Button
+                IconButton(
+                  onPressed: () async {
+                    await cht.sendMessage();
+                  },
+                  icon: const Icon(Icons.send),
+                  color: Theme.of(context).primaryColor,
+                ),
+              ],
             ),
           ),
         ],
