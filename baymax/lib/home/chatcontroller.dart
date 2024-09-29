@@ -31,7 +31,7 @@ class ChatController extends GetxController {
     // Make the API call to send the message
     final Response res = await getConnect.post(
       "$baseUrl/aichat/",
-      {"date": "$date", "msg": message},
+      {"date": date, "msg": message},
       headers: {"Authorization": "token $token"},
     );
 

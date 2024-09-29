@@ -35,7 +35,7 @@ class ScreenHome extends StatelessWidget {
       initialRoute: lgn.box.read("token") == null ? "/login" : "/home",
       getPages: [
         GetPage(name: "/login", page: () => const LoginPage()),
-        GetPage(name: "/home", page: () => HomeScreen())
+        GetPage(name: "/home", page: () => const HomeScreen())
       ],
     );
   }

@@ -23,8 +23,8 @@ class FileUploadController extends GetxController {
   Future<dynamic> postUrl(String name) async {
     final key = box.read("token");
     Response res = await getcon.post("${_baseurl}records/", {
-      "name": "${fname.value}",
-      "url": "${furl.value}",
+      "name": fname.value,
+      "url": furl.value,
       "date": "22/08/24",
       "record_type": "bloodreport"
     }, headers: {

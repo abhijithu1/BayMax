@@ -16,8 +16,8 @@ class DetailFileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -29,17 +29,17 @@ class DetailFileView extends StatelessWidget {
                     children: [
                       Text(name),
                       SizedBox(
-                        width: _width * 0.05,
+                        width: width * 0.05,
                       ),
                       Text(date),
                     ],
                   ),
                   SizedBox(
-                    height: _height * 0.05,
+                    height: height * 0.05,
                   ),
                   Text(summary),
                   SizedBox(
-                    height: _height * 0.05,
+                    height: height * 0.05,
                   ),
                   Text(url),
                 ],

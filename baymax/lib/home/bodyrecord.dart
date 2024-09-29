@@ -1,7 +1,6 @@
 import 'package:baymax/detailsview/detailedview.dart';
 import 'package:baymax/fileupload/fileuploadview.dart';
 import 'package:baymax/home/recordsretrieval.dart';
-import 'package:baymax/recordview/recordview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

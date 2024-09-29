@@ -8,8 +8,8 @@ class Fileuploadview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FileUploadController fpl = Get.find<FileUploadController>();
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -23,7 +23,7 @@ class Fileuploadview extends StatelessWidget {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  SizedBox(height: _height * 0.03),
+                  SizedBox(height: height * 0.03),
                   TextField(
                     controller: fpl.filename,
                     decoration: InputDecoration(
@@ -43,7 +43,7 @@ class Fileuploadview extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: _height * 0.05,
+                    height: height * 0.05,
                   ),
                   TextField(
                     controller: fpl.url,
@@ -64,7 +64,7 @@ class Fileuploadview extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: _height * 0.05,
+                    height: height * 0.05,
                   ),
                   ElevatedButton(
                     onPressed: () async {

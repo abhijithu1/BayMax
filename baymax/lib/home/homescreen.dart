@@ -11,22 +11,22 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _height = MediaQuery.of(context).size.height;
-    final _width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
 
     final LoginController lgn = Get.find<LoginController>();
     final HomeController hmc = Get.find<HomeController>();
     final PageController pg = PageController();
     return Scaffold(
-      bottomNavigationBar: Container(
-        height: _height * 0.084518,
+      bottomNavigationBar: SizedBox(
+        height: height * 0.084518,
         child: BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             hmc.setindex(index);
             pg.animateToPage(index,
-                duration: Duration(milliseconds: 400),
+                duration: const Duration(milliseconds: 400),
                 curve: Curves.easeInOutSine);
             // debugPrint("Index number $index");
           },
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
           // width: _screenwidth,
           child: Padding(
             padding: EdgeInsets.only(
-              top: _height * 0.0100227,
+              top: height * 0.0100227,
               bottom: 0,
             ),
             child: CustomScrollView(
@@ -66,10 +66,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                   actions: [
                     Padding(
-                      padding: EdgeInsets.only(right: _width * 0.04843318),
-                      child: Container(
-                        height: _height * 0.07399,
-                        width: _width * 0.17193,
+                      padding: EdgeInsets.only(right: width * 0.04843318),
+                      child: SizedBox(
+                        height: height * 0.07399,
+                        width: width * 0.17193,
                         child: const CircleAvatar(
                           backgroundImage: NetworkImage(
                             "https://img.freepik.com/free-photo/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university_273609-1270.jpg",
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: _width * 0.04843318),
+                      padding: EdgeInsets.only(right: width * 0.04843318),
                       child: Container(
                         child: IconButton(
                             onPressed: () async {
@@ -86,17 +86,17 @@ class HomeScreen extends StatelessWidget {
                               debugPrint("Token Removed");
                               Get.offAllNamed("/login");
                             },
-                            icon: Icon(Icons.logout_rounded)),
+                            icon: const Icon(Icons.logout_rounded)),
                       ),
                     )
                   ],
-                  toolbarHeight: _height * 0.0900227,
+                  toolbarHeight: height * 0.0900227,
                   floating: true,
                   pinned: true,
                   elevation: 0,
                   title: Padding(
                     padding: EdgeInsets.only(
-                      top: _height * 0.016,
+                      top: height * 0.016,
                     ),
                     child: Obx(() => Text(
                           hmc.titles[hmc.page_num.value],
@@ -110,8 +110,8 @@ class HomeScreen extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate([
                     // const SizedBox(height: 5),
-                    Container(
-                      height: _height * 0.7948700485,
+                    SizedBox(
+                      height: height * 0.7948700485,
                       child: PageView(
                         controller: pg,
                         physics: const BouncingScrollPhysics(),
@@ -120,16 +120,16 @@ class HomeScreen extends StatelessWidget {
                         },
                         children: [
                           BodyChat(
-                            height: _height,
-                            width: _width,
+                            height: height,
+                            width: width,
                           ),
                           BodyRecord(
-                            height: _height,
-                            width: _width,
+                            height: height,
+                            width: width,
                           ),
                           GetFileDetails(
-                            height: _height,
-                            width: _width,
+                            height: height,
+                            width: width,
                           ),
                         ],
                       ),

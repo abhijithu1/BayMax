@@ -30,8 +30,8 @@ class ReportDateController extends GetxController {
   Future<dynamic> getReport() async {
     final key = box.read("token");
     Response res = await getcon.post(
-      "${baseurl}/createReport/",
-      {"date": "${selectedDate.value}"},
+      "$baseurl/createReport/",
+      {"date": selectedDate.value},
       headers: {"Authorization": "token $key"},
     );
     if (res.statusCode == 200) {

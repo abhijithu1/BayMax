@@ -24,13 +24,13 @@ class BodyChat extends StatelessWidget {
               cht.chatMessages.clear();
               cht.date = '';
             },
-            icon: SizedBox(
+            icon: const SizedBox(
                 height: 20,
                 width: 20,
                 child: Icon(Icons.cleaning_services, color: Colors.red)),
           ),
           IconButton(
-            icon: SizedBox(
+            icon: const SizedBox(
               height: 20,
               width: 20,
               child: Icon(
@@ -125,10 +125,10 @@ class BodyChat extends StatelessWidget {
                 IconButton(
                   onPressed: () {},
                   icon: spc.isListening == true
-                      ? Icon(
+                      ? const Icon(
                           Icons.mic_off,
                         )
-                      : Icon(Icons.mic),
+                      : const Icon(Icons.mic),
                 )
               ],
             ),
