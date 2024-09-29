@@ -2,6 +2,7 @@ import 'package:baymax/auth/logincontroller.dart';
 import 'package:baymax/home/bodychat.dart';
 import 'package:baymax/home/bodyrecord.dart';
 import 'package:baymax/home/homecontroller.dart';
+import 'package:baymax/home/recordsview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,13 +35,17 @@ class HomeScreen extends StatelessWidget {
             BottomNavigationBarItem(
               label: "",
               icon: Icon(
-                Icons.medical_services,
+                Icons.chat_bubble_outline,
               ),
             ),
             BottomNavigationBarItem(
               label: "",
-              icon: Icon(Icons.chat_bubble_outline),
+              icon: Icon(Icons.medical_services),
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.note_alt_outlined),
+              label: "",
+            )
           ],
         ),
       ),
@@ -54,7 +59,6 @@ class HomeScreen extends StatelessWidget {
               bottom: 0,
             ),
             child: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
               slivers: [
                 SliverAppBar(
                   shape: RoundedRectangleBorder(
@@ -115,11 +119,15 @@ class HomeScreen extends StatelessWidget {
                           hmc.setindex(index1);
                         },
                         children: [
+                          BodyChat(
+                            height: _height,
+                            width: _width,
+                          ),
                           BodyRecord(
                             height: _height,
                             width: _width,
                           ),
-                          BodyChat(
+                          GetFileDetails(
                             height: _height,
                             width: _width,
                           ),
