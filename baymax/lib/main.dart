@@ -1,6 +1,7 @@
 import 'package:baymax/auth/logincontroller.dart';
 import 'package:baymax/auth/loginpage.dart';
 import 'package:baymax/fileupload/fileuploadcontroller.dart';
+import 'package:baymax/home/bigscreen.dart';
 import 'package:baymax/home/chatcontroller.dart';
 import 'package:baymax/home/homecontroller.dart';
 import 'package:baymax/home/homescreen.dart';
@@ -37,7 +38,8 @@ class ScreenHome extends StatelessWidget {
       initialRoute: lgn.box.read("token") == null ? "/login" : "/home",
       getPages: [
         GetPage(name: "/login", page: () => const LoginPage()),
-        GetPage(name: "/home", page: () => HomeScreen())
+        GetPage(name: "/home", page: () => BigScreen()),
+        GetPage(name: "/realhome", page: () => HomeScreen())
       ],
     );
   }
