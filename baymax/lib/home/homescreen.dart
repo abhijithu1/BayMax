@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: SizedBox(
-        height: height * 0.084518,
+        height: height * 0.08,
         child: BottomNavigationBar(
           elevation: 0,
           type: BottomNavigationBarType.fixed,
