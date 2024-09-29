@@ -14,10 +14,10 @@ class ChatController extends GetxController {
   final isLoading = false.obs;
   var date = '';
 
-  Future<void> sendMessage() async {
+  Future<void> sendMessage(String massage) async {
     // Retrieve the stored token
     final token = await box.read("token");
-    final message = messageController.text;
+    final message = massage;
 
     // Exit if no message is entered
 

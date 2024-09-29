@@ -5,6 +5,7 @@ import 'package:baymax/home/chatcontroller.dart';
 import 'package:baymax/home/homecontroller.dart';
 import 'package:baymax/home/homescreen.dart';
 import 'package:baymax/home/recordsretrieval.dart';
+import 'package:baymax/speechcontrol/speechcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,7 @@ class ScreenHome extends StatelessWidget {
   final FileUploadController fpl = Get.put(FileUploadController());
   final Recordsretrieval rrc = Get.put(Recordsretrieval());
   final ChatController cht = Get.put(ChatController());
+  final SpeechController spc = Get.put(SpeechController());
 
   @override
   Widget build(BuildContext context) {

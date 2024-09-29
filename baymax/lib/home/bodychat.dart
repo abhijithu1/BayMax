@@ -14,7 +14,7 @@ class BodyChat extends StatelessWidget {
   Widget build(BuildContext context) {
     final ChatController cht = Get.find<ChatController>();
     final DateController dt = Get.put(DateController());
-    final SpeechController spc = Get.put(SpeechController());
+    final SpeechController spc = Get.find<SpeechController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,30 +24,28 @@ class BodyChat extends StatelessWidget {
               cht.chatMessages.clear();
               cht.date = '';
             },
-            icon: SizedBox(
-                height: 20,
-                width: 20,
-                child: Icon(Icons.cleaning_services, color: Colors.red)),
+            icon: Icon(
+              Icons.cleaning_services,
+              color: Colors.red,
+              size: 20,
+            ),
           ),
           IconButton(
-            icon: SizedBox(
-              height: 20,
-              width: 20,
-              child: Icon(
-                Icons.date_range_outlined,
-                color: Colors.red,
-              ),
-            ),
             onPressed: () async {
               await dt.selectDate(context);
             },
-          )
+            icon: Icon(
+              Icons.date_range_outlined,
+              color: Colors.red,
+              size: 20,
+            ),
+          ),
         ],
         centerTitle: true,
+        title: Text("Chat"),
       ),
       body: Column(
         children: [
-          // Chat Messages List
           Expanded(
             child: Obx(
               () => ListView.builder(
@@ -82,21 +80,16 @@ class BodyChat extends StatelessWidget {
               ),
             ),
           ),
-
-          // Loading Indicator
           Obx(() => cht.isLoading.value
               ? const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: CircularProgressIndicator(),
                 )
               : const SizedBox()),
-
-          // Message Input Field
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               children: [
-                // Message Text Field
                 Expanded(
                   child: TextField(
                     controller: cht.messageController,
@@ -113,23 +106,29 @@ class BodyChat extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                // Send Button
                 IconButton(
                   onPressed: () async {
-                    await cht.sendMessage();
+                    if (cht.messageController.text.isNotEmpty) {
+                      await cht.sendMessage(cht.messageController.text);
+                    }
                   },
                   icon: const Icon(Icons.send),
                   color: Theme.of(context).primaryColor,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: spc.isListening == true
-                      ? Icon(
-                          Icons.mic_off,
-                        )
-                      : Icon(Icons.mic),
-                )
+                Obx(
+                  () => IconButton(
+                    onPressed: () async {
+                      if (spc.isListening.value) {
+                        await spc.stopListening();
+                      } else {
+                        await spc.startListening();
+                      }
+                    },
+                    icon: spc.isListening.value
+                        ? Icon(Icons.mic, color: Colors.red)
+                        : Icon(Icons.mic_off, color: Colors.grey),
+                  ),
+                ),
               ],
             ),
           ),
