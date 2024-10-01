@@ -2,7 +2,6 @@ import 'package:baymax/auth/logincontroller.dart';
 import 'package:baymax/home/recordsretrieval.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

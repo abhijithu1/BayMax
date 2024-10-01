@@ -73,12 +73,14 @@ class BodyChat extends StatelessWidget {
                             : const Color.fromARGB(255, 255, 196,
                                 196), // Light grey for received message
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                          bottomLeft:
-                              isUserMessage ? Radius.circular(12) : Radius.zero,
-                          bottomRight:
-                              isUserMessage ? Radius.zero : Radius.circular(12),
+                          topLeft: const Radius.circular(12),
+                          topRight: const Radius.circular(12),
+                          bottomLeft: isUserMessage
+                              ? const Radius.circular(12)
+                              : Radius.zero,
+                          bottomRight: isUserMessage
+                              ? Radius.zero
+                              : const Radius.circular(12),
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -175,8 +177,8 @@ class BodyChat extends StatelessWidget {
 
                 // Send Button
                 Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 224, 6,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 224, 6,
                         6), // BayMax-themed red background for send button
                     shape: BoxShape.circle,
                   ),

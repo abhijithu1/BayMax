@@ -1,5 +1,4 @@
 import 'package:baymax/constants.dart';
-import 'package:baymax/home/chatcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
